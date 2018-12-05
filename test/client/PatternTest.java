@@ -2,6 +2,7 @@ package client;
 
 import data.Bootstrap;
 import extensions.PartExtension;
+import extensions.embossing.PartEmbossmentExtension;
 import extensions.explosion.PartExplosionExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,16 +33,26 @@ class PatternTest {
     }
 
     @Test
-    public void runUnsupportedExtension() {
+    public void runPiecePartEmbossment() {
         UnsupportedOperationException exception= assertThrows(UnsupportedOperationException.class, () -> {
-            getPartExtension(bootstrap.nut, "invalid");
+            getPartExtension(bootstrap.nut, "embossment");
         });
-        assertEquals("Part 234567 (Nut) does not support the 'invalid' extension.", exception.getMessage());
+        assertEquals("Part 234567 (Nut) does not support the 'embossment' extension.", exception.getMessage());
+    }
+
+    @Test
+    public void runAssemblyEmbossment() {
+        PartEmbossmentExtension explosion = getPartEmbossmentExtension(bootstrap.hingedShockPad);
+        assertEquals("Feeble Example \u00a9\nPart number 444444", explosion.produceEmbossmentTemplate());
     }
 
 
     private PartExplosionExtension getPartExplosionExtension(Part part) {
         return (PartExplosionExtension) getPartExtension(part, "explosion");
+    }
+
+    private PartEmbossmentExtension getPartEmbossmentExtension(Part part) {
+        return (PartEmbossmentExtension) getPartExtension(part, "embossment");
     }
 
     private PartExtension getPartExtension(Part part, String key) throws UnsupportedOperationException{

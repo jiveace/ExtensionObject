@@ -1,5 +1,6 @@
 package data;
 
+import extensions.embossing.AssemblyEmbossmentExtension;
 import extensions.explosion.AssemblyExplosionExtension;
 import extensions.explosion.PiecePartExplosionExtension;
 import subjects.Assembly;
@@ -46,6 +47,12 @@ public class Bootstrap {
 
         AssemblyExplosionExtension hingedShockPadExplosionExtension = new AssemblyExplosionExtension(hingedShockPad);
 
+        AssemblyEmbossmentExtension mixedBagEmbossmentExtension = new AssemblyEmbossmentExtension(mixedBag);
+        AssemblyEmbossmentExtension hingeEmbossmentExtension = new AssemblyEmbossmentExtension(hinge);
+        AssemblyEmbossmentExtension shockEmbossmentExtension = new AssemblyEmbossmentExtension(shockPad);
+
+        AssemblyEmbossmentExtension hingedShockPadEmbossmentExtension = new AssemblyEmbossmentExtension(hingedShockPad);
+
         screw.getExtensions().put("explosion", screwExplosionExtension);
         nut.getExtensions().put("explosion", nutExplosionExtension);
         spring.getExtensions().put("explosion", springExplosionExtension);
@@ -55,7 +62,11 @@ public class Bootstrap {
         mixedBag.getExtensions().put("explosion", mixedBagExplosionExtension);
         hinge.getExtensions().put("explosion", hingeExplosionExtension);
         shockPad.getExtensions().put("explosion", shockExplosionExtension);
+        mixedBag.getExtensions().put("embossment", mixedBagEmbossmentExtension);
+        hinge.getExtensions().put("embossment", hingeEmbossmentExtension);
+        shockPad.getExtensions().put("embossment", shockEmbossmentExtension);
 
         hingedShockPad.getExtensions().put("explosion", hingedShockPadExplosionExtension);
+        hingedShockPad.getExtensions().put("embossment", hingedShockPadEmbossmentExtension);
     }
 }
